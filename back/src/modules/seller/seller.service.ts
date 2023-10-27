@@ -19,11 +19,8 @@ export class SellerService {
     };
   }
 
-  async findByName(name: string) {
-    const Seller = await this.sellerRepo.findOne({ name });
-    if (!Seller) {
-      throw new BadRequestException();
-    }
+  async findByEmail(email: string) {
+    const Seller = await this.sellerRepo.findOne({ email });
 
     return Seller;
   }

@@ -1,3 +1,6 @@
-import { IUser } from '../user/IUser.interface';
+import mongoose from 'mongoose';
 
-export interface IBuyer extends IUser {}
+export interface IBuyer {
+  books_bought: string[];
+  userId: mongoose.Types.ObjectId;
+}
