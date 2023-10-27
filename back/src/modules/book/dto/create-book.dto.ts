@@ -1,6 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsMongoId, IsNotEmpty, IsPositive, IsString } from 'class-validator';
-import mongoose from 'mongoose';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsPositive,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateBookDto {
   @ApiProperty()
@@ -22,9 +27,9 @@ export class CreateBookDto {
   @IsNotEmpty()
   @IsPositive()
   price: number;
-
   @ApiProperty()
   @IsNotEmpty()
-  @IsMongoId()
-  sellerId: mongoose.Schema.Types.ObjectId;
+  @IsNumber()
+  @Min(0)
+  stock: number;
 }

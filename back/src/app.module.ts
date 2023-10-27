@@ -8,6 +8,7 @@ import { BuyerModule } from './modules/buyer/buyer.module';
 import { SellerModule } from './modules/seller/seller.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { BookModule } from './modules/book/book.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -37,6 +38,7 @@ import { UserModule } from './modules/user/user.module';
     BuyerModule,
     SellerModule,
     AuthModule,
+    BookModule,
   ],
   controllers: [AppController],
   providers: [AppService],
