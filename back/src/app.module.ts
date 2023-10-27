@@ -9,6 +9,7 @@ import { SellerModule } from './modules/seller/seller.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { BookModule } from './modules/book/book.module';
+import { VoucherModule } from './modules/voucher/voucher.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -39,6 +40,7 @@ import { BookModule } from './modules/book/book.module';
     SellerModule,
     AuthModule,
     BookModule,
+    VoucherModule,
   ],
   controllers: [AppController],
   providers: [AppService],
