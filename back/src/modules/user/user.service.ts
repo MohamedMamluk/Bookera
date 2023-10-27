@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { User } from './schema/user.schema';
 import { CreateUserDto } from './Dtos/create_user.dto';
-import { DuplicateUserException } from 'src/exxceptions/dublicated.exception';
+import { DuplicateUserException } from 'src/exxceptions/duplicated.exception';
 import { SellerService } from '../seller/seller.service';
 import { BuyerService } from '../buyer/buyer.service';
 import { Roles } from 'src/common/enums/roles.enum';
@@ -46,9 +46,10 @@ export class UserService {
         },
       };
     } catch (error) {
-      console.log(error);
       if (error.code === 11000) {
-        throw new DuplicateUserException(UserData.email);
+        throw new DuplicateUserException(
+          `User with the email ${UserData.email} already exists.`,
+        );
       }
       throw new Error(error);
     }
