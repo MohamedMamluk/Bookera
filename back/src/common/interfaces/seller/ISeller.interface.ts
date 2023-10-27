@@ -1,6 +1,7 @@
-import { IUser } from '../user/IUser.interface';
+import mongoose from 'mongoose';
 
-export interface ISeller extends IUser {
-  vouchers?: string;
-  balance?: number;
+export interface ISeller {
+  vouchers: string[];
+  balance: number;
+  userId: mongoose.Types.ObjectId;
 }
