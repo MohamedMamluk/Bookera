@@ -13,15 +13,16 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { bookSchema } from '../data/schema';
+import { Book, bookSchema } from '../data/schema';
+import Link from 'next/link';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
 
-export function DataTableRowActions<
-  TData
->({}: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -34,7 +35,11 @@ export function DataTableRowActions<
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[160px]'>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <Link href={`/dashboard/books/edit/${(row.original as Book)._id}`}>
+          <DropdownMenuItem onClick={() => console.log(row)}>
+            Edit
+          </DropdownMenuItem>
+        </Link>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem className='text-red-600'>

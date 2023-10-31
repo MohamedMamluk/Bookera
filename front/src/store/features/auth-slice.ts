@@ -31,8 +31,31 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await BookeraBackend.post('/auth/login', loginData);
       localStorage.setItem('user', JSON.stringify(response.data));
-      toast.success('Successfully logged in!!');
       return response.data;
+    } catch (error: any) {
+      console.log(error);
+      return thunkApi.rejectWithValue(error.response.data);
+    }
+  }
+);
+//  getUser: (state) => {
+//       const user = localStorage.getItem('user');
+//       state.user = user ? JSON.parse(user) : null;
+//     },
+export const verifyUserToken = createAsyncThunk(
+  'auth/verify',
+  // Declare the type your function argument here:
+  async (_, thunkApi) => {
+    try {
+      const user = localStorage.getItem('user');
+      const data = user ? JSON.parse(user) : null;
+      console.log('in Verify');
+      const response = await BookeraBackend.get('/auth/verifyToken', {
+        headers: { Authorization: 'Bearer ' + data.access_token },
+      });
+      localStorage.setItem('user', JSON.stringify(data));
+
+      return data;
     } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.message);
@@ -46,10 +69,6 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    getUser: (state) => {
-      const user = localStorage.getItem('user');
-      state.user = user ? JSON.parse(user) : null;
-    },
     logout: (state) => {
       localStorage.removeItem('user');
       state.user = null;
@@ -57,6 +76,10 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      state.user = payload;
+      state.loading = false;
+    });
+    builder.addCase(verifyUserToken.fulfilled, (state, { payload }) => {
       state.user = payload;
       state.loading = false;
     });
@@ -71,4 +94,4 @@ export const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { getUser, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
