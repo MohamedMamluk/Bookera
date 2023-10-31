@@ -10,5 +10,6 @@ import { Book, BookSchema } from './schema/book.schema';
   imports: [
     MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }]),
   ],
+  exports: [BookService],
 })
 export class BookModule {}
