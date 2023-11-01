@@ -23,7 +23,7 @@ import { toast } from 'react-toastify';
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [errors, setErrors] = React.useState<string[]>([]);
+  const [errors, setErrors] = React.useState<string>();
   const searchParams = useSearchParams();
 
   const router = useRouter();
@@ -40,6 +40,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       toast.success('Logged in!!');
       router.push(searchParams.get('redirect_to') || '/home');
     } else {
+      setErrors(payload.message);
       toast.error(payload.message);
     }
   };
@@ -89,13 +90,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </Button>
         </div>
       </form>
-      {errors.length
-        ? errors.map((error, index) => (
-            <small className='text-red-400 text-center block h-3' key={index}>
-              {error}
-            </small>
-          ))
-        : null}
+      {errors ? (
+        <small className='text-red-400 text-center block h-3'>{errors}</small>
+      ) : null}
 
       <Link href='/register' className=''>
         <Button

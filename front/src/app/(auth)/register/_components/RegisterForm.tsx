@@ -14,12 +14,14 @@ import { useForm } from 'react-hook-form';
 import { formSchema } from '../_schema/registerFormSchema';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [errors, setErrors] = React.useState<string[]>([]);
+  const router = useRouter();
   const registerForm = useForm<zod.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -29,7 +31,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     try {
       const response = await BookeraBackend.post('/user', data);
       toast.success('Successfully registered!!');
+      router.push('/login');
       setErrors([]);
+
       console.log(response.data);
     } catch (error: any) {
       toast.error('Something went wrong, Please check the error messages');
