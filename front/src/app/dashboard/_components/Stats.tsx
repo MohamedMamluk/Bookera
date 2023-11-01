@@ -14,38 +14,39 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Overview } from '@/components/dashboard/components/overview';
 import { RecentSales } from '@/components/dashboard/components/recent-sales';
 import { useAppSelector } from '@/store';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const Stats = () => {
   const { user } = useAppSelector((store) => store.authSlice);
 
-  const [stats, setStats] = React.useState<any[]>([]);
+  const [stats, setStats] = React.useState<any[] | null>(null);
   const balance = useMemo(() => {
     const USDCurrencyFormatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
     });
-    const totalBalance = stats.reduce(
+    const totalBalance = stats?.reduce(
       (prev, current) => (prev += current.totalPrice),
       0
     );
     return USDCurrencyFormatter.format(totalBalance);
   }, [stats]);
   const salesPerMonth = useMemo(() => {
-    const totalBalance = stats.reduce(
+    const totalBalance = stats?.reduce(
       (prev, current) => (prev += current.totalPrice),
       0
     );
     return totalBalance;
   }, [stats]);
   const booksSold = useMemo(() => {
-    const count = stats.reduce(
+    const count = stats?.reduce(
       (prev, current) => (prev += current.booksSold),
       0
     );
     return count;
   }, [stats]);
   const bestSeller = useMemo(() => {
-    return stats[0] || null;
+    return stats ? stats[0] : null;
   }, [stats]);
   useEffect(() => {
     (async () => {
@@ -84,7 +85,7 @@ const Stats = () => {
             </CardHeader>
             <CardContent>
               <div className='text-2xl font-bold transition ease-in'>
-                {!stats.length ? 'Calculating...' : balance}
+                {!stats ? <Skeleton className='h-12 w-full ' /> : balance}
               </div>
               <p className='text-xs text-muted-foreground'></p>
             </CardContent>
@@ -131,6 +132,8 @@ const Stats = () => {
             </CardHeader>
             <CardContent>
               <div className='text-2xl font-bold'>
+                {!stats ? <Skeleton className='h-12 w-full ' /> : null}
+
                 {bestSeller ? bestSeller.book.title : ''}
               </div>
               <p className='text-xs text-muted-foreground'>

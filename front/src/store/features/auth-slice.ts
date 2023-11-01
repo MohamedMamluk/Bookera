@@ -60,7 +60,6 @@ export const verifyUserToken = createAsyncThunk(
       console.log(error);
       toast.error(error.response.data.message);
       return thunkApi.rejectWithValue(error.response.data);
-    } finally {
     }
   }
 );

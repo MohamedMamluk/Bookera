@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { Book } from '@/store/features/dashboard-slice';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 const BookCard = ({ book }: { book: Book }) => {
   return (
@@ -14,7 +15,7 @@ const BookCard = ({ book }: { book: Book }) => {
     >
       <img
         src={book.cover}
-        alt='Img by Meriç Dağlı https://unsplash.com/@meric'
+        alt={`${book.title} cover`}
         className='w-full h-auto object-cover rounded-lg'
       />
       <div className='absolute bottom-0 left-0 right-0 h-48  py-4 bg-gray-700 bg-opacity-50 backdrop-blur text-white p-4 rounded-b-lg space-y-5'>

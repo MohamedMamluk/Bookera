@@ -20,9 +20,9 @@ export function RecentSales() {
       }
     })();
   }, [user?.access_token]);
-  if (!sales.length) {
-    return <Icons.spinner />;
-  }
+  // if (!sales.length) {
+  //   return <Icons.spinner />;
+  // }
 
   return (
     <div className='space-y-8 max-w-full '>
@@ -41,9 +41,11 @@ export function RecentSales() {
           </div>
         );
       })}
-      <div>
-        <Link href='/dashboard/transactions'>View All Sales</Link>
-      </div>
+      {sales.length ? (
+        <div>
+          <Link href='/dashboard/transactions'>View All Sales</Link>
+        </div>
+      ) : null}
     </div>
   );
 }

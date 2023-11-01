@@ -9,10 +9,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     (async () => {
-      const { meta } = await store.dispatch(verifyUserToken());
+      const { meta } = await dispatch(verifyUserToken());
       if (meta.requestStatus == 'rejected') {
         dispatch(logout());
-        // navigate.push('/home');
+        navigate.push('/home');
       }
     })();
   }, [dispatch, navigate]);

@@ -22,7 +22,7 @@ type InitialState = {
 const initialState: InitialState = {
   books_bought: null,
   errors: null,
-  loading: false,
+  loading: true,
 };
 
 export const getBooksBought = createAsyncThunk(

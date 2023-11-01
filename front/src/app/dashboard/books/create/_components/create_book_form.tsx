@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useRouter } from 'next/navigation';
 type Field = {
   label: string;
   type: string;
@@ -59,6 +60,7 @@ const fields: Field[] = [
 ];
 const CreateBook = () => {
   const { user } = useAppSelector((store) => store.authSlice);
+  const router = useRouter();
   const [isUploading, setIsUploading] = useState(false);
   const createBookForm = useForm<BookSchema>({
     resolver: zodResolver(bookSchema),
@@ -72,7 +74,12 @@ const CreateBook = () => {
         }),
         {
           pending: 'Creating Book...',
-          success: 'Book Created 👌',
+          success: {
+            render() {
+              router.push('/dashboard/books');
+              return 'Book Created 👌';
+            },
+          },
           error: {
             render: ({ data }: any) => {
               console.log(data);
@@ -81,6 +88,7 @@ const CreateBook = () => {
           },
         }
       );
+      toast.success('book ');
     } catch (error) {
       return;
     }

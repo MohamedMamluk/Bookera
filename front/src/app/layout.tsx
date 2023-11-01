@@ -21,19 +21,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // await store.dispatch(
-  //   loginUser({ email: 'mohamed@gmail.com', password: '!Aa123456789' })
-  // );
   return (
     <AppProvider>
+      {/* <AuthProvider> */}
       <html lang='en'>
         <body className={` ${inter.className}`}>
-          <AuthProvider>
-            <ToastProvider />
-            {children}
-          </AuthProvider>
+          <ToastProvider />
+          {children}
         </body>
       </html>
+      {/* </AuthProvider> */}
     </AppProvider>
   );
 }

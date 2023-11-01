@@ -24,7 +24,7 @@ export function MainNav({
         href='/dashboard/books'
         className='text-sm font-medium text-muted-foreground transition-colors hover:text-primary'
       >
-        Books Sold
+        Books Owned
       </Link>
       <Link
         href='/dashboard/bought'

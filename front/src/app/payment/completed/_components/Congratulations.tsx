@@ -1,5 +1,6 @@
 'use client';
 import { store, useAppSelector } from '@/store';
+import { verifyUserToken } from '@/store/features/auth-slice';
 import { updatePayment } from '@/store/features/payment-slice';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,7 +18,11 @@ const Congratulations = ({
   const router = useRouter();
   useEffect(() => {
     (async () => {
+      if (!user?.access_token) {
+        const getUser = await store.dispatch(verifyUserToken());
+      }
       if (user?.access_token) {
+        console.log('here');
         const res = await store.dispatch(
           updatePayment({
             userToken: user.access_token,
@@ -25,8 +30,9 @@ const Congratulations = ({
             status,
           })
         );
-        setTimeout(router.push, 3000, '/dashboard');
-        // router.push('/dashboard');
+        console.log(res);
+        // setTimeout(router.push, 3000, '/dashboard');
+        router.push('/dashboard');
       }
     })();
   }, [user, router, paymentId, status]);

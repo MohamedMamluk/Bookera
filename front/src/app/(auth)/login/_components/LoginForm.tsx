@@ -19,6 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { store, useAppSelector } from '@/store';
 import { loginUser } from '@/store/features/auth-slice';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'react-toastify';
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
@@ -34,6 +35,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const login = async (data: zod.infer<typeof loginFormSchema>) => {
     const { meta } = await store.dispatch(loginUser(data));
     if (meta.requestStatus == 'fulfilled') {
+      toast.success('Logged in!!');
       router.push(searchParams.get('redirect_to') || '/home');
     }
   };
