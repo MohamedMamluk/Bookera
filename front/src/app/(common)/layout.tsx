@@ -11,9 +11,11 @@ export default function RootLayout({
   return (
     <body>
       <AuthProvider>
-        <MainNav />
-        <Suspense>{children}</Suspense>
-        <Footer />
+        <Suspense>
+          <MainNav />
+          {children}
+          <Footer />
+        </Suspense>
       </AuthProvider>
     </body>
   );
