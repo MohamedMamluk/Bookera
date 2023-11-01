@@ -8,8 +8,8 @@ export const setupSwagger = (app: INestApplication) => {
       : 'http://localhost:3000/';
 
   const options = new DocumentBuilder()
-    .setTitle('EduHub API')
-    .setDescription('API Specifications')
+    .setTitle('Bookera API')
+    .setDescription('Online bookstore API Specifications')
     .setVersion('1.0')
     .addBearerAuth(
       { type: 'http', in: 'header', scheme: 'bearer', bearerFormat: 'JWT' },
