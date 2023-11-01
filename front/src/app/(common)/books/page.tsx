@@ -22,7 +22,7 @@ type Book = {
   createdAt: string;
   updatedAt: string;
 };
-// export const revalidate = 20;
+export const revalidate = 10;
 const getBooks = async (searchParams: Record<'search' | 'sortBy', string>) => {
   const encodedValues = Object.entries(searchParams).map(
     ([key, value]) => `${key}=${encodeURIComponent(value)}`
