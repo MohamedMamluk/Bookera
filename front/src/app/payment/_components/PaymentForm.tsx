@@ -21,6 +21,7 @@ export default function PaymentForm({
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState('');
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(stripe, elements);
@@ -37,6 +38,7 @@ export default function PaymentForm({
         },
       });
       if (error) {
+        setErrors(error.message);
         throw error;
       }
     } catch (error: any) {
@@ -53,6 +55,7 @@ export default function PaymentForm({
           Secure Checkout
           <span className='mt-2 block h-1 w-10 bg-teal-600 sm:w-20'></span>
         </h1>
+        <p>Hint: Use test card 4242 4242 4242 4242</p>
         <form onSubmit={onSubmit} className='mt-10 flex flex-col space-y-4'>
           <PaymentElement id='payment-element' />
           <button
@@ -68,6 +71,7 @@ export default function PaymentForm({
               <span>Place Order</span>
             )}
           </button>
+          {errors ? <p>{errors} </p> : null}
         </form>
         <p className='mt-10 text-center text-sm font-semibold text-gray-500'>
           By placing this order you agree to the{' '}
