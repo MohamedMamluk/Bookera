@@ -4,12 +4,16 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { MongooseModule } from '@nestjs/mongoose';
-import { BuyerModule } from './modules/buyer/buyer.module';
-import { SellerModule } from './modules/seller/seller.module';
+
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { BookModule } from './modules/book/book.module';
 import { VoucherModule } from './modules/voucher/voucher.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { FileUploadModule } from './modules/file_upload/file_upload.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { BooksBoughtModule } from './modules/books_bought/books_bought.module';
+import { BooksSoldModule } from './modules/books_sold/books_sold.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -36,11 +40,15 @@ import { VoucherModule } from './modules/voucher/voucher.module';
       inject: [ConfigService],
     }),
     UserModule,
-    BuyerModule,
-    SellerModule,
+
     AuthModule,
     BookModule,
     VoucherModule,
+    DashboardModule,
+    FileUploadModule,
+    PaymentsModule,
+    BooksBoughtModule,
+    BooksSoldModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -13,13 +13,16 @@ export class BookService {
   }
 
   findAll(query: Record<string, string>) {
-    const filters: Record<string, any> = {};
+    console.log(query);
+    const filters: Record<string, any> = this.applyFilters(query);
+    console.log(filters);
+    const sortBy = this.sortByFilters(query.sortBy);
+    return this.bookRepo.find(filters).sort(sortBy);
+  }
 
-    if (query.title) {
-      filters.title = { $regex: new RegExp(query.title, 'i') };
-    }
-
-    return this.bookRepo.find(filters);
+  async findAllBySellerId(sellerId: string) {
+    console.log(sellerId);
+    return this.bookRepo.find({ sellerId });
   }
 
   findOne(id: string) {
@@ -35,5 +38,35 @@ export class BookService {
 
   remove(id: string) {
     return this.bookRepo.findByIdAndRemove(id);
+  }
+  private applyFilters = (query: Record<string, string>) => {
+    const filters: Record<string, any> = {};
+    if (query.title) {
+      filters.title = { $regex: new RegExp(query.title, 'i') };
+    }
+    if (query.min) {
+      filters.price = { ...filters.price, $gte: Number(query.min) };
+    }
+
+    if (query.max) {
+      filters.price = { ...filters.price, $lte: Number(query.max) };
+    }
+
+    if (query.category) {
+      filters.category = { $eq: query.category };
+    }
+    return filters;
+  };
+
+  private sortByFilters(sortBy: string) {
+    const sortByFilter: any = { price: false };
+    if (sortBy == 'price-asc') {
+      sortByFilter.price = 1;
+    } else if ((sortBy = 'price-desc')) {
+      sortByFilter.price = -1;
+    } else {
+      sortByFilter.createdAt = -1;
+    }
+    return sortByFilter;
   }
 }

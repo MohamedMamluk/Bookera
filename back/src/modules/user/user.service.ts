@@ -5,17 +5,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 import { CreateUserDto } from './Dtos/create_user.dto';
 import { DuplicateUserException } from 'src/exxceptions/duplicated.exception';
-import { SellerService } from '../seller/seller.service';
-import { BuyerService } from '../buyer/buyer.service';
-import { Roles } from 'src/common/enums/roles.enum';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectModel(User.name) private userRepo: Model<User>,
-    private sellerRepo: SellerService,
-    private buyerRepo: BuyerService,
-  ) {}
+  constructor(@InjectModel(User.name) private userRepo: Model<User>) {}
 
   async createUser(UserData: CreateUserDto) {
     try {
@@ -23,26 +16,12 @@ export class UserService {
       if (!createdUser) {
         throw new DuplicateUserException(UserData.email);
       }
-      let userRole;
-      if (createdUser.role === Roles.BUYER) {
-        userRole = await this.buyerRepo.createBuyer({
-          books_bought: [],
-          userId: createdUser._id,
-        });
-      } else {
-        userRole = await this.sellerRepo.createSeller({
-          balance: 0,
-          vouchers: [],
-          userId: createdUser._id,
-        });
-      }
       return {
         message: 'User Created',
         data: {
           name: createdUser.name,
           email: createdUser.email,
           role: createdUser.role,
-          ...userRole,
         },
       };
     } catch (error) {
