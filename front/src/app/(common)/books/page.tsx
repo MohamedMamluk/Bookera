@@ -22,7 +22,6 @@ type Book = {
   createdAt: string;
   updatedAt: string;
 };
-export const revalidate = 10;
 const getBooks = async (searchParams: Record<'search' | 'sortBy', string>) => {
   const encodedValues = Object.entries(searchParams).map(
     ([key, value]) => `${key}=${encodeURIComponent(value)}`
@@ -31,7 +30,7 @@ const getBooks = async (searchParams: Record<'search' | 'sortBy', string>) => {
   console.log('encoded values', encodedValues);
   const response = await fetch(
     process.env.NEXT_PUBLIC_SERVER_LINK! + `/book?${encodedValues.join('&')}`,
-    { cache: 'no-cache' }
+    { next: { revalidate: 10 } }
   );
   const json = await response.json();
   return json;
@@ -41,6 +40,7 @@ const page = async ({
 }: {
   searchParams: Record<'search' | 'sortBy', string>;
 }) => {
+  console.log(process.env.NEXT_PUBLIC_SERVER_LINK);
   console.log('search params from /books', searchParams);
   const books = await getBooks(searchParams);
   return (
