@@ -21,7 +21,6 @@ const BooksPage = () => {
       }
     })();
   }, [user?.access_token]);
-  // const books = await (await fetch('http://localhost:3001/book')).json();
   return (
     <div>
       <DataTable data={books} columns={columns} />
