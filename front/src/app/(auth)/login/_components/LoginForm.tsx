@@ -27,16 +27,20 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const searchParams = useSearchParams();
 
   const router = useRouter();
-  const { loading } = useAppSelector((store) => store.authSlice);
+  const { loading, errors: serverError } = useAppSelector(
+    (store) => store.authSlice
+  );
   const loginForm = useForm<zod.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
   });
 
   const login = async (data: zod.infer<typeof loginFormSchema>) => {
-    const { meta } = await store.dispatch(loginUser(data));
+    const { meta, payload } = await store.dispatch(loginUser(data));
     if (meta.requestStatus == 'fulfilled') {
       toast.success('Logged in!!');
       router.push(searchParams.get('redirect_to') || '/home');
+    } else {
+      toast.error(payload.message);
     }
   };
 

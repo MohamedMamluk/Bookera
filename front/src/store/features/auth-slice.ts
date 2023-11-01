@@ -81,12 +81,14 @@ export const authSlice = createSlice({
     builder.addCase(verifyUserToken.fulfilled, (state, { payload }) => {
       state.user = payload;
       state.loading = false;
+      state.errors = null;
     });
     builder.addCase(loginUser.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       console.log('rejected', action.payload);
+      state.errors = action.payload;
       state.loading = false;
     });
   },

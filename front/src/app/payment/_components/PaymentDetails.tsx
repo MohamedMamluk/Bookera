@@ -31,23 +31,48 @@ const PaymentDetails = () => {
     return <Icons.spinner />;
   }
   return (
-    <article className='hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] md:max-w-[50%]'>
-      <div className='rounded-[10px] bg-white p-4 !pt-20 sm:p-6 '>
-        <div className='w-full  aspect-square'>
-          <img src={book.cover} className='w-full h-full object-contain' />
-        </div>
-        <h3 className='mt-0.5 text-lg font-medium text-gray-900  '>
-          {book.title.replaceAll('_', ' ')}
-        </h3>
-        <h4 className='mt-0.5 text-base font-medium text-gray-900 '>
-          {USDCurrencyFormatter.format(+book.price)}
-        </h4>
-
-        <div className='mt-4 flex flex-wrap gap-1'>
-          <Badge>{book.category}</Badge>
+    <div className='relative col-span-full flex flex-col py-6 pl-8 pr-4 sm:py-12 lg:col-span-4 lg:py-24'>
+      <h2 className='sr-only'>Order summary</h2>
+      <div>
+        <img
+          src='https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'
+          alt=''
+          className='absolute inset-0 h-full w-full object-cover'
+        />
+        <div className='absolute inset-0 h-full w-full bg-gradient-to-t from-teal-800 to-teal-400 opacity-95'></div>
+      </div>
+      <div className='relative'>
+        <ul className='space-y-5'>
+          <li className='flex justify-between'>
+            <div className='inline-flex'>
+              <img src={book.cover} alt='' className='max-h-16' />
+              <div className='ml-3'>
+                <p className='text-base font-semibold text-white'>
+                  {book.title}
+                </p>
+                <p className='text-sm font-medium text-white text-opacity-80'>
+                  {book.author}
+                </p>
+              </div>
+            </div>
+            <p className='text-sm font-semibold text-white'>
+              {USDCurrencyFormatter.format(+book.price)}
+            </p>
+          </li>
+        </ul>
+        <div className='my-5 h-0.5 w-full bg-white bg-opacity-30'></div>
+        <div className='space-y-2'>
+          <p className='flex justify-between text-lg font-bold text-white'>
+            <span>Total price:</span>
+            <span> {USDCurrencyFormatter.format(+book.price)}</span>
+          </p>
+          {/* <p className='flex justify-between text-sm font-medium text-white'>
+            <span>Vat: 10%</span>
+            <span>$55.00</span>
+          </p> */}
         </div>
       </div>
-    </article>
+    </div>
   );
 };
 

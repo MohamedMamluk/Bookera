@@ -39,8 +39,6 @@ export const updatePayment = createAsyncThunk(
       console.log(response.data);
       return response.data;
     } catch (error: any) {
-      console.log(error);
-      toast.error(error.response.data.message);
       return thunkApi.rejectWithValue(error.response.data);
     } finally {
     }
@@ -61,7 +59,6 @@ export const initiatePayment = createAsyncThunk(
       return response.data;
     } catch (error: any) {
       console.log(error);
-      toast.error(error.response.data.message);
       return thunkApi.rejectWithValue(error.response.data);
     } finally {
     }

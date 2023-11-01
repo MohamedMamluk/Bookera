@@ -13,18 +13,18 @@ export default function PaymentWrapper() {
   const { payment } = useAppSelector((store) => store.paymentSlice);
 
   return (
-    <div className=' space-y-4 md:flex w-full gap-4'>
-      <PaymentDetails />
-      {payment && stripePromise && (
-        <Elements
-          stripe={stripePromise}
-          options={{ clientSecret: payment.client_secret }}
-        >
-          <div className='w-full'>
+    <div className='relative mx-auto w-full bg-white'>
+      <div className='grid min-h-screen grid-cols-10'>
+        <PaymentDetails />
+        {payment && stripePromise && (
+          <Elements
+            stripe={stripePromise}
+            options={{ clientSecret: payment.client_secret }}
+          >
             <PaymentForm clientSecret={payment.client_secret} />
-          </div>
-        </Elements>
-      )}
+          </Elements>
+        )}
+      </div>
     </div>
   );
 }

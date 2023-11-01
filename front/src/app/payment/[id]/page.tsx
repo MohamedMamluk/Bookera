@@ -1,6 +1,5 @@
 import React from 'react';
 import PaymentWrapper from '../_components/PaymentWrapper';
-
 const PaymentPage = async ({ params }: { params: { id: string } }) => {
   console.log(params['id']);
   return (
