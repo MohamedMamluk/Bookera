@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local.guard';
 import { Request } from 'express';
 import { HydratedDocument } from 'mongoose';
-import { ApiTags, ApiBody, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiBody, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { LoginDto } from './Dtos/login.dto';
 
 import { User } from '../user/schema/user.schema';
@@ -39,6 +39,7 @@ export class AuthController {
 
   @UseGuards(JwtGuard)
   @Get('verifyToken')
+  @ApiBearerAuth('access_token')
   async verifyAccessToken() {
     console.log('here');
   }

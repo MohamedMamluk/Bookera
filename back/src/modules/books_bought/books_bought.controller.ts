@@ -3,9 +3,12 @@ import { BooksBoughtService } from './books_bought.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { User } from 'src/common/decorators/user.decorator';
 import mongoose from 'mongoose';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('books-bought')
 @UseGuards(JwtGuard)
+@ApiTags('Books Sold')
+@ApiBearerAuth('access_token')
 export class BooksBoughtController {
   constructor(private readonly booksBoughtService: BooksBoughtService) {}
 
