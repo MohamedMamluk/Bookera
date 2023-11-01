@@ -30,7 +30,7 @@ const getBooks = async (searchParams: Record<'search' | 'sortBy', string>) => {
 
   console.log('encoded values', encodedValues);
   const response = await fetch(
-    `http://localhost:3001/book?${encodedValues.join('&')}`,
+    process.env.NEXT_PUBLIC_SERVER_LINK! + `/book?${encodedValues.join('&')}`,
     { cache: 'no-cache' }
   );
   const json = await response.json();

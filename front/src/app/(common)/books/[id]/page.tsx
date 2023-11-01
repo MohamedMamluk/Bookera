@@ -5,7 +5,9 @@ import React from 'react';
 import BuyButton from './_components/BuyButton';
 
 const getBookDetails = async (bookId: string): Promise<Book> => {
-  const response = await fetch(`http://localhost:3001/book/${bookId}`);
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_SERVER_LINK! + `/book/${bookId}`
+  );
   // const json = await response.json();
   return response.json();
 };
