@@ -13,7 +13,7 @@ export default function PaymentWrapper() {
   const { payment } = useAppSelector((store) => store.paymentSlice);
 
   return (
-    <div className='relative mx-auto w-full bg-white'>
+    <div className='relative mx-auto w-full bg-white '>
       <div className='grid min-h-screen grid-cols-10'>
         <PaymentDetails />
         {payment && stripePromise && (

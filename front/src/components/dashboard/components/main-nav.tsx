@@ -9,7 +9,7 @@ export function MainNav({
   return (
     <nav
       className={cn(
-        'flex items-start flex-wrap justify-start gap-4',
+        'flex items-start flex-wrap justify-start gap-4 ',
         className
       )}
       {...props}

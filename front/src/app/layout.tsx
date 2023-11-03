@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import AppProvider from '@/store/Provider';
 import './globals.css';
 import ToastProvider from '@/components/toaster';
-import { store } from '@/store';
-import { loginUser } from '@/store/features/auth-slice';
-import AuthProvider from '@/components/AuthProvider';
+
+import { ThemeProvider } from '@/components/theme-provider';
+
 const inter = Poppins({
   weight: ['100', '300', '500', '600', '700', '800'],
   subsets: ['latin'],
@@ -25,9 +25,16 @@ export default async function RootLayout({
     <AppProvider>
       {/* <AuthProvider> */}
       <html lang='en'>
-        <body className={` ${inter.className}`}>
-          <ToastProvider />
-          {children}
+        <body className={` ${inter.className} dark:!bg-gray-800`}>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='system'
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ToastProvider />
+            {children}
+          </ThemeProvider>
         </body>
       </html>
       {/* </AuthProvider> */}

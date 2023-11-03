@@ -5,12 +5,12 @@ import React from 'react';
 
 const Book = ({ data }: { data: Book }) => {
   return (
-    <li className='relative'>
+    <li className='relative  border dark:border-gray-600 border-gray-300'>
       <Link
         href={`/books/${data._id}`}
         className='group block overflow-hidden '
       >
-        <div className='h-[450px] w-full  sm:h-[450px]'>
+        <div className='h-[450px] w-full  sm:h-[450px] dark:bg-gray-200'>
           <img
             src={data.cover}
             alt={data.title}
@@ -18,15 +18,15 @@ const Book = ({ data }: { data: Book }) => {
           />
         </div>
 
-        <div className='relative bg-white pt-3'>
-          <h3 className='text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4'>
+        <div className='relative dark:bg-gray-800 h-full py-3 pl-2'>
+          <h3 className='text-xs text-gray-700 dark:text-gray-100 group-hover:underline group-hover:underline-offset-4'>
             {data.title}
           </h3>
 
           <p className='mt-2'>
             <span className='sr-only'> Regular Price </span>
 
-            <span className='tracking-wider text-gray-900'>
+            <span className='tracking-wider text-gray-900 dark:text-gray-300'>
               {' '}
               £{data.price}.00 GBP{' '}
             </span>

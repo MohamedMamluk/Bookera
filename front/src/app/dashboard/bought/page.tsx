@@ -4,7 +4,7 @@ import BooksBoughtWrapper from './_components/BooksBoughtWrapper';
 
 const BoughtBooks = () => {
   return (
-    <div className='bg-white flex justify-center items-center'>
+    <div className='bg-white flex justify-center items-center dark:bg-gray-800'>
       {/* <PDFViewer /> */}
       <BooksBoughtWrapper />
     </div>

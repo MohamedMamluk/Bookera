@@ -9,7 +9,7 @@ const BreadCrumbs = () => {
   const segments = params.split('/').slice(1, -1);
   return (
     <nav aria-label='Breadcrumb'>
-      <ol className='flex items-center gap-1 text-sm text-gray-600 flex-wrap'>
+      <ol className='flex items-center gap-1 text-sm text-gray-600 dark:text-gray-100 flex-wrap'>
         <li>
           <Link href='/' className='block transition hover:text-gray-700'>
             <span className='sr-only'> Home </span>
@@ -37,7 +37,7 @@ const BreadCrumbs = () => {
               <li>
                 <Link
                   href={`/${segments.slice(0, index + 1).join('/')}`}
-                  className='block transition hover:text-gray-700 capitalize'
+                  className='block transition hover:text-gray-700 dark:hover:text-gray-500 capitalize'
                 >
                   {segment}
                 </Link>

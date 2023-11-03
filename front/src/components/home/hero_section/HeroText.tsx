@@ -3,8 +3,8 @@ import React from 'react';
 
 const HeroText = () => {
   return (
-    <section className='relative bg-[url(/books.webp)] bg-cover bg-center bg-no-repeat w-full'>
-      <div className='absolute inset-0 bg-[#fdf9ed]/75 sm:from-[#fdf9ed]/25 sm:to-[#ecedf2]/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l'></div>
+    <section className='relative bg-[url(/books.webp)] bg-cover bg-center bg-no-repeat w-full '>
+      <div className='absolute inset-0 bg-[#fdf9ed]/75 sm:from-[#fdf9ed]/25 sm:to-[#ecedf2]/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l dark:invert dark:filter'></div>
 
       <div className='relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-[calc(100vh-200px)] lg:items-center lg:px-8'>
         <div className='max-w-xl text-center sm:text-left rtl:sm:text-right'>

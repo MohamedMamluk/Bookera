@@ -23,7 +23,9 @@ export const FiltersAndSortingLarge = () => {
       <SortBy />
 
       <div>
-        <p className='block text-xs font-medium text-gray-700'>Filters</p>
+        <p className='block text-xs font-medium text-gray-700 dark:text-gray-100'>
+          Filters
+        </p>
 
         <div className='mt-1 space-y-2'>
           <SelectCategories />
@@ -50,9 +52,9 @@ export const PriceFilter = () => {
   };
 
   return (
-    <details className='overflow-hidden rounded border border-gray-300 w-full max-w-md [&_summary::-webkit-details-marker]:hidden'>
+    <details className='overflow-hidden rounded border border-gray-300 dark:border-gray-600 w-full max-w-md [&_summary::-webkit-details-marker]:hidden'>
       <summary className='flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition'>
-        <span className='text-sm font-medium'> Price </span>
+        <span className='text-sm font-medium dark:text-gray-100'> Price </span>
 
         <span className='transition group-open:-rotate-180'>
           <svg
@@ -72,11 +74,11 @@ export const PriceFilter = () => {
         </span>
       </summary>
 
-      <div className='border-t border-gray-200 bg-white'>
+      <div className='border-t border-gray-200  dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-100'>
         <header className='flex items-center justify-between p-4'>
           <button
             type='button'
-            className='text-sm text-gray-900 underline underline-offset-4'
+            className='text-sm text-gray-900 dark:text-gray-100 underline underline-offset-4'
           >
             Reset
           </button>
@@ -88,7 +90,9 @@ export const PriceFilter = () => {
               htmlFor='FilterPriceFrom'
               className='flex items-center gap-2'
             >
-              <span className='text-sm text-gray-600'>$</span>
+              <span className='text-sm text-gray-600 dark:text-gray-100'>
+                $
+              </span>
 
               <input
                 type='number'
@@ -98,12 +102,14 @@ export const PriceFilter = () => {
                 onChange={(e) =>
                   setPrice((prev) => ({ ...prev, min: Number(e.target.value) }))
                 }
-                className='w-full rounded-md border-gray-200 shadow-sm sm:text-sm'
+                className='w-full rounded-md border border-gray-200 shadow-sm sm:text-sm py-1 px-2'
               />
             </label>
 
             <label htmlFor='FilterPriceTo' className='flex items-center gap-2'>
-              <span className='text-sm text-gray-600'>$</span>
+              <span className='text-sm text-gray-600 dark:text-gray-100'>
+                $
+              </span>
 
               <input
                 type='number'
@@ -113,11 +119,11 @@ export const PriceFilter = () => {
                 onChange={(e) =>
                   setPrice((prev) => ({ ...prev, max: Number(e.target.value) }))
                 }
-                className='w-full rounded-md border-gray-200 shadow-sm sm:text-sm'
+                className='w-full rounded-md border-gray-200 shadow-sm sm:text-sm py-1 px-2 border'
               />
             </label>
           </div>
-          <Button>Filter</Button>
+          <Button className='my-2'>Filter</Button>
         </form>
       </div>
     </details>

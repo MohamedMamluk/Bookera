@@ -17,7 +17,7 @@ const SwiperCard = () => {
       </div>
       <div className='flex flex-col gap-2 text-center md:text-left'>
         <h2 className='text-xl font-bold'>Rich Dad Poor Dad</h2>
-        <p className='text-gray-600'>
+        <p className='text-gray-600 dark:text-gray-100'>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium,
           minus!
         </p>

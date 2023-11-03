@@ -53,7 +53,7 @@ const BuyButton = ({ bookId }: { bookId: string }) => {
     <>
       {!user?.access_token ? (
         <Link
-          className='w-full h-full block'
+          className='w-full h-full block w-max'
           href={'/login?redirect_to=' + pathname}
         >
           <Button className='flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded'>

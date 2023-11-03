@@ -4,22 +4,16 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { UserAuthForm } from './_components/LoginForm';
+import Logo from '@/components/logo';
 
 export default function AuthenticationPage() {
   return (
     <>
-      <div className='container relative  h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0'>
+      <div className='container relative dark:bg-gray-800  h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0'>
         <div className='lg:p-8'>
           <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
             <div className='flex justify-center'>
-              <Link href='/' className='relative z-20  w-44 aspect-video'>
-                <Image
-                  src='/logo.png'
-                  fill={true}
-                  objectFit='contain'
-                  alt='Bookera logo'
-                />
-              </Link>
+              <Logo />
             </div>
 
             <div className='flex flex-col space-y-2 text-center'>

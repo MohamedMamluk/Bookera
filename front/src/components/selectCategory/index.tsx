@@ -35,7 +35,7 @@ const SelectCategories = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Category</SelectLabel>
+          <SelectLabel className='dark:text-gray-100'>Category</SelectLabel>
           {categories.map((category, index) => {
             return (
               <SelectItem key={index} value={category} className='capitalize'>

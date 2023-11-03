@@ -1,16 +1,18 @@
 import React from 'react';
+import Logo from '../logo';
 
 const Footer = () => {
   return (
     <>
-      <footer className='relative z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20 border-t'>
+      <footer className='relative z-10 bg-white dark:bg-gray-800 pt-20 pb-10 lg:pt-[120px] lg:pb-20 border-t dark:border-gray-600'>
         <div className='container'>
           <div className='flex flex-wrap -mx-4'>
             <div className='w-full px-4 sm:w-2/3 lg:w-3/12'>
               <div className='w-full mb-10'>
-                <a href='/#' className='mb-6 inline-block max-w-[160px]'>
+                {/* <a href='/#' className='mb-6 inline-block max-w-[160px]'>
                   <img src='/logo.png' alt='logo' className='max-w-full' />
-                </a>
+                </a> */}
+                <Logo />
                 <p className='text-base mb-7 text-body-color'>
                   Sed ut perspiciatis undmnis is iste natus error sit amet
                   voluptatem totam rem aperiam.

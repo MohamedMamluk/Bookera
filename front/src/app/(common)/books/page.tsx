@@ -3,6 +3,7 @@ import BooksHeader from './_components/header';
 import { FiltersAndSortingMobile } from './_components/filter-sorting';
 import BooksLayout from './_components/booksLayout';
 import BreadCrumbs from '@/components/breadcrumbs';
+import { Metadata } from 'next';
 
 type Book = {
   _id: string;
@@ -14,6 +15,11 @@ type Book = {
   sellerId: string;
   createdAt: string;
   updatedAt: string;
+};
+export const metadata: Metadata = {
+  title: 'Bookera | Books',
+  description:
+    'Browse our collection of books, from classic novels to modern bestsellers. We have something for everyone!',
 };
 const getBooks = async (searchParams: Record<'search' | 'sortBy', string>) => {
   const encodedValues = Object.entries(searchParams).map(
@@ -42,7 +48,7 @@ const page = async ({
   console.log('search params from /books', searchParams);
   const books = await getBooks(searchParams);
   return (
-    <section className='bg-white'>
+    <section className='bg-white dark:bg-gray-800 '>
       <div className='mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 space-y-3'>
         <BreadCrumbs />
         <BooksHeader />

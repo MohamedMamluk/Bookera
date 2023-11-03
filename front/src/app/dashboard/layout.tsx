@@ -1,8 +1,8 @@
 import RequireAuthProvider from '@/components/RequireAuthProvider';
 import { MainNav } from '@/components/dashboard/components/main-nav';
 import UserNav from '@/components/dashboard/components/user-nav';
-import Image from 'next/image';
-import Link from 'next/link';
+import Logo from '@/components/logo';
+import { ThemeSwitcher } from '@/components/theme-switch';
 
 export default function DashboardLayout({
   children,
@@ -11,24 +11,20 @@ export default function DashboardLayout({
 }) {
   return (
     <RequireAuthProvider>
-      <main className=' max-w-7xl mx-auto '>
-        <div className='flex items-center border-b relative'>
-          <div className='flex h-auto items-center px-4 flex-wrap'>
-            <div className='relative w-32 aspect-video'>
-              <Image
-                src='/logo.png'
-                className='w-full object-contain'
-                fill={true}
-                alt='bookera logo'
-              />
+      <main className='   dark:bg-gray-800 min-h-screen'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='flex items-center border-b relative border-gray-600'>
+            <div className='flex h-auto items-center px-4 flex-wrap'>
+              <Logo />
+              <MainNav className='mx-6' />
             </div>
-            <MainNav className='mx-6' />
+            <div className='ml-auto flex items-center space-x-4 mr-12'>
+              <UserNav />
+            </div>
+            <ThemeSwitcher />
           </div>
-          <div className='ml-auto flex items-center space-x-4 mr-12'>
-            <UserNav />
-          </div>
+          {children}
         </div>
-        {children}
       </main>
     </RequireAuthProvider>
   );

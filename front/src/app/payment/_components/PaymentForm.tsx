@@ -51,11 +51,13 @@ export default function PaymentForm({
   return (
     <div className='col-span-full py-6 px-4 sm:py-12 lg:col-span-6 lg:py-24'>
       <div className='mx-auto w-full max-w-lg'>
-        <h1 className='relative text-2xl font-medium text-gray-700 sm:text-3xl'>
+        <h1 className='relative text-2xl font-medium text-gray-700  sm:text-3xl'>
           Secure Checkout
           <span className='mt-2 block h-1 w-10 bg-teal-600 sm:w-20'></span>
         </h1>
-        <p>Hint: Use test card 4242 4242 4242 4242</p>
+        <p className='dark:text-gray-800'>
+          Hint: Use test card 4242 4242 4242 4242
+        </p>
         <form onSubmit={onSubmit} className='mt-10 flex flex-col space-y-4'>
           <PaymentElement id='payment-element' />
           <button

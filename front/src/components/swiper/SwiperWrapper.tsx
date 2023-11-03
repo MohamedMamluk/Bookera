@@ -40,7 +40,7 @@ const SwiperWrapper: React.FC<{ data: any[] }> = ({ data }) => {
         return (
           <SwiperSlide
             key={index}
-            className='select-none bg-white shadow-lg rounded-lg p-3 items-center !flex flex-col md:flex-row !justify-center md:justify-start gap-2 cursor-grab'
+            className='select-none bg-white dark:bg-gray-800  shadow-lg rounded-lg p-3 items-center !flex flex-col md:flex-row !justify-center md:justify-start gap-2 cursor-grab'
           >
             <SwiperCard />
           </SwiperSlide>
